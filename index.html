@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oishik Samanta | Terminal Portfolio</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: monospace;
+      padding: 2rem;
+      white-space: pre-wrap;
+      overflow-x: hidden;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1em;
+      background: #0f0;
+      animation: blink 0.7s steps(2, start) infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    .social {
+      margin-top: 1rem;
+    }
+    .social a {
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal"></div>
+  <div class="social">
+    <a href="https://instagram.com/tfc.oishik" target="_blank">📸 Instagram</a>
+  </div>
+
+  <script>
+    const lines = [
+      "Welcome to Oishik Samanta's Portfolio",
+      "------------------------------------------------------------",
+      "Name      : Oishik Samanta",
+      "Focus     : Mathematics | CompSci | Data Science | Philosophy",
+      "Projects  :",
+      "   -> Age Calculator (Python CLI) https://github.com/yourusername/age-calculator",
+      "   -> Smart City Model (Coming soon)",
+      "   -> Olympiad Math Vault (Coming soon)",
+      "Interests : Chess ♟️ | Piano 🎹 | Books | Trading | Psychology",
+      "Blog      : Ran a book blog on Instagram 📚 (archived)",
+      "Contact   : github.com/yourusername | youremail@example.com",
+      "------------------------------------------------------------",
+      "Thank you for visiting. Press Ctrl+T to open a new tab ;)"
+    ];
+
+    let i = 0;
+    const terminal = document.getElementById("terminal");
+
+    function typeLine() {
+      if (i < lines.length) {
+        const line = document.createElement("div");
+        let j = 0;
+        const text = lines[i];
+        const interval = setInterval(() => {
+          line.textContent += text[j];
+          j++;
+          if (j === text.length) {
+            clearInterval(interval);
+            i++;
+            setTimeout(typeLine, 300);
+          }
+        }, 20);
+        terminal.appendChild(line);
+      } else {
+        const cursor = document.createElement("span");
+        cursor.className = "cursor";
+        terminal.appendChild(cursor);
+      }
+    }
+
+    window.onload = typeLine;
+  </script>
+</body>
+</html>
