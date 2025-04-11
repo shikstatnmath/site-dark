@@ -2,30 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oishik Samanta | My Journey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oishik Samanta | Terminal Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background-color: #111;
-      color: #0f0;
-      font-family: monospace;
+      margin: 0;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       padding: 2rem;
-      white-space: pre-wrap;
-      overflow-x: hidden;
     }
-    a {
-      color: #0ff;
-      text-decoration: none;
+    .terminal {
+      background-color: #161b22;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      border: 1px solid #30363d;
+      overflow: hidden;
     }
-    a:hover {
-      text-decoration: underline;
+    .line {
+      line-height: 1.6;
     }
     .cursor {
       display: inline-block;
       width: 10px;
       height: 1em;
-      background: #0f0;
-      animation: blink 0.7s steps(2, start) infinite;
+      background: #58a6ff;
+      animation: blink 1s steps(2, start) infinite;
       margin-left: 2px;
     }
     @keyframes blink {
@@ -33,59 +46,70 @@
         visibility: hidden;
       }
     }
-    .social {
-      margin-top: 1rem;
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
     }
-    .social a {
+    .footer a {
       margin-right: 1rem;
+      color: #8b949e;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: #58a6ff;
     }
   </style>
 </head>
 <body>
-  <div id="terminal"></div>
-  <div class="social">
-    <a href="https://instagram.com/tfc.oishik" target="_blank">📸 Instagram</a>
+  <div class="terminal">
+    <div id="terminal-output"></div>
+    <div class="footer">
+      <a href="https://github.com/shikstatnmath" target="_blank">💻 GitHub</a>
+      <a href="https://instagram.com/tfc.oishik" target="_blank">📸 Instagram</a>
+      <a href="mailto:youremail@example.com">📬 Email</a>
+    </div>
   </div>
 
   <script>
     const lines = [
-      "Welcome to Oishik Samanta's Portfolio",
+      "Welcome to Oishik Samanta's Terminal Portfolio",
       "------------------------------------------------------------",
-      "Name      : Oishik Samanta",
-      "Focus     : Mathematics | CompSci | Data Science | Philosophy",
-      "Projects  :",
-      "   -> Age Calculator (Python CLI) https://github.com/shikstatnmath/age-calculator",
-      "   -> Smart City Model (Coming soon)",
-      "   -> Olympiad Math Vault (Coming soon)",
-      "Interests : Chess ♟️ | Piano 🎹 | Books | Trading | Psychology",
-      "Blog      : Ran a book blog on Instagram 📚 (archived)",
-      "Contact   : github.com/shikstatnmath | clg.oishiksamanta@gmail.com",
+      "👤 Name        : Oishik Samanta",
+      "🎯 Focus       : Mathematics | Computer Science | Data Science",
+      "📚 Past Blog   : Ran a book blog on Instagram (archived)",
+      "🎵 Interests   : Chess ♟️ | Piano 🎹 | Books | Trading | Philosophy",
+      "🚀 Projects    :",
+      "   → Age Calculator (Python CLI): github.com/shikstatnmath/age-calculator",
+      "   → Smart City Model (Coming soon)",
+      "   → Olympiad Math Vault (Coming soon)",
+      "📫 Contact     : github.com/shikstatnmath | youremail@example.com",
       "------------------------------------------------------------",
-      "Thank you for visiting. Press Ctrl+T to open a new tab ;)"
+      "Thanks for visiting! 😊"
     ];
 
+    const terminalOutput = document.getElementById('terminal-output');
     let i = 0;
-    const terminal = document.getElementById("terminal");
 
     function typeLine() {
       if (i < lines.length) {
-        const line = document.createElement("div");
+        const line = document.createElement('div');
+        line.className = 'line';
         let j = 0;
         const text = lines[i];
-        const interval = setInterval(() => {
+        const typing = setInterval(() => {
           line.textContent += text[j];
           j++;
           if (j === text.length) {
-            clearInterval(interval);
+            clearInterval(typing);
             i++;
-            setTimeout(typeLine, 300);
+            setTimeout(typeLine, 200);
           }
-        }, 20);
-        terminal.appendChild(line);
+        }, 15);
+        terminalOutput.appendChild(line);
       } else {
-        const cursor = document.createElement("span");
-        cursor.className = "cursor";
-        terminal.appendChild(cursor);
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        terminalOutput.appendChild(cursor);
       }
     }
 
